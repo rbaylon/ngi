@@ -1,0 +1,36 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'newbase.html' %}
+{% block title %}IBM Recon Tool{% endblock %}
+{% block content %}
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">NGI Management Information System</div>
+    <div class="col"></div>
+  </div>
+  <br>
+  <div class="card-deck">
+  <div class="card bg-light text-white">
+    <div class="card-body text-center">
+      <p class="card-text"><a href="{{ url_for('members', page_num=1)}}">Members</a></p>
+    </div>
+  </div>
+  <div class="card bg-warning">
+    <div class="card-body text-center">
+      <p class="card-text">CPC Accounting</p>
+    </div>
+  </div>
+  <div class="card bg-success">
+    <div class="card-body text-center">
+      <p class="card-text">Chapter Accounting</p>
+    </div>
+  </div>
+  <div class="card bg-danger">
+    <div class="card-body text-center">
+      <p class="card-text">Misc</p>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock %}

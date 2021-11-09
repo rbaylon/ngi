@@ -1,0 +1,5 @@
+docs
+config.cfg
+*cache*
+*venv*
+*migrations*

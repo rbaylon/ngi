@@ -1,0 +1,30 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'newbase.html' %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col"></div>
+		<div class="col"><br></div>
+		<div class="col"></div>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col"><h3>Pick a week</h3></div>
+		<div class="col"></div>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col">
+			<form method="POST" enctype="multipart/form-data" action="{{ url_for('preupload') }}">
+				<div class="form-group">
+					{{ form.hidden_tag() }}
+					{{ wtf.form_field(form.weekending)}}
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		<div class="col"></div>
+	</div>
+</div>
+{% endblock %}
