@@ -1,0 +1,32 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+psycopg2 = "*"
+ipaddress = "*"
+email-validator = "*"
+openpyxl = "*"
+alembic = "*"
+python-dotenv = "*"
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Flask-Bootstrap = "*"
+Flask-Login = "*"
+Flask-RESTful = "*"
+WTForms-SQLAlchemy = "*"
+WTForms = "*"
+Flask-Migrate = "*"
+Flask-Script = "*"
+Flask-WTF = "*"
+PyJWT = "*"
+Flask-WTF-Ext = "*"
+WTForms-Components = "*"
+Werkzeug = "*"
+SQLAlchemy = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

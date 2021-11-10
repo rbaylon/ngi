@@ -16,8 +16,8 @@ class NgiForm(FlaskForm):
     address = TextAreaField('Address', validators=[InputRequired(), Length(min=2, max=200)])
     ngi_number = StringField('NGI Number', validators=[InputRequired(), Length(min=2, max=20)])
     member_since = DateField('Member Since',default=date.today(), format="%Y-%m-%d")
-    rank = SelectField('Rank', choices=[('mg', 'MG'),('rmg','RMG'),('frmg','FRMG'),('mf','MF'),('nf','NF'),
-                                        ('sgf','SGF'),('sgm','SGM'),('gm','GM'),('gf','GF')])
+    rank = SelectField('Rank', choices=[('MG', 'MG'),('RMG','RMG'),('FRMG','FRMG'),('MF','MF'),('NF','NF'),
+                                        ('SGF','SGF'),('SGM','SGM'),('GM','GM'),('GF','GF')])
     chapter = StringField('Chapter', validators=[InputRequired(), Length(min=2, max=50)])
     delete = HiddenField('Delete', default='N', validators=[Length(max=1)])
     edit = HiddenField('Edit', default='N', validators=[Length(max=1)])
