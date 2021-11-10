@@ -4,3 +4,4 @@ config.cfg
 *venv*
 *migrations*
 *.lock
+.idea
