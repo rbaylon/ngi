@@ -7,4 +7,5 @@ class ChapterPayments(db.Model):
     received_date = db.Column(db.String(10))
     received_amount = db.Column(db.String(7))
     payment_type = db.Column(db.String(50))
-    cpc_deducted = db.Column(db.Boolean)
+    chapter = db.Column(db.String(50))
+    cpc = db.Column(db.Boolean)
