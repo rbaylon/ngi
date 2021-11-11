@@ -11,6 +11,7 @@ from models import Person, Chapter
 def persons():
     return Person.query.all()
 
+
 def chapters():
     return Chapter.query.all()
 
@@ -27,7 +28,7 @@ class NgiForm(FlaskForm):
     ngi_number = StringField('NGI Number', validators=[InputRequired(), Length(min=2, max=20)])
     member_since = DateField('Member Since',default=date.today(), format="%Y-%m-%d")
     rank = SelectField('Rank', choices=ranks)
-    chapter = StringField('Chapter', validators=[InputRequired(), Length(min=2, max=50)])
+    chapter = QuerySelectField('Chapter',get_label='name', query_factory=chapters, allow_blank=True)
     delete = HiddenField('Delete', default='N', validators=[Length(max=1)])
     edit = HiddenField('Edit', default='N', validators=[Length(max=1)])
 

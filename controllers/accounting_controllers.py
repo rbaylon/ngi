@@ -1,4 +1,5 @@
 from models import ChapterPayments
+from baseapp import db
 
 
 class ChapterPaymentsController:

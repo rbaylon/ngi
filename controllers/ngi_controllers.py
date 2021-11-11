@@ -1,4 +1,5 @@
 from models import Chapter
+from baseapp import db
 
 
 class ChapterController:
@@ -6,8 +7,9 @@ class ChapterController:
         pass
 
     def add(self, chapter):
-        existing = Chapterchapters.query.filter_by(name=chapter['name']).first()
+        existing = Chapter.query.filter_by(name=chapter['name']).first()
         if not existing:
+            new_chapter = Chapter()
             new_chapter.name = chapter['name']
             new_chapter.founder = chapter['founder']
             new_chapter.founded = chapter['founded']
@@ -18,7 +20,7 @@ class ChapterController:
         return False
 
     def edit(self, chapter):
-        existing_chapter = Chapterchapters.query.filter_by(id=chapter['id']).first()
+        existing_chapter = Chapter.query.filter_by(id=chapter['id']).first()
         if existing_chapter:
             existing_chapter.name = chapter['name']
             existing_chapter.founder = chapter['founder']
@@ -29,7 +31,7 @@ class ChapterController:
         return False
 
     def delete(self, chapter):
-        existing_chapter = Chapterchapters.query.filter_by(id=chapter['id']).first()
+        existing_chapter = Chapter.query.filter_by(id=chapter['id']).first()
         if existing_chapter:
             db.session.delete(existing_chapter)
             db.session.commit()
