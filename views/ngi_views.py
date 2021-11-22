@@ -152,6 +152,7 @@ def chapter_payments(chapter_id):
     payments = []
     total_chapter_share = 0
     total_cpc_share = 0
+    total_uniform_fee = 0
     for p in chapter_payments:
         data = {
             'received_from': p.received_from,
@@ -176,6 +177,8 @@ def chapter_payments(chapter_id):
 
         if p.payment_type != 'uniform_fee':
             total_chapter_share += chapter_share
+        else:
+            total_uniform_fee += chapter_share
 
         payments.append(data)
 
