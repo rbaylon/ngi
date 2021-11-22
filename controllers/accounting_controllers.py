@@ -7,11 +7,17 @@ class ChapterPaymentsController:
         pass
 
     def add(self, payment):
-        existing = ChapterPayments.query.filter_by(received_from=payment['received_from'],
-                                                   received_date=payment['received_date'],
-                                                   payment_type=payment['payment_type'],
-                                                   received_amount=payment['received_amount']).first()
+        existing = False
+        payments = ChapterPayments.query.filter_by(received_date=payment['received_date']).all()
+        for existing_payment in payments:
+            if existing_payment.received_from == payment['received_from'] \
+                and existing_payment.received_amount == payment['received_amount'] \
+                    and existing_payment.payment_type == payment['payment_type']:
+                        existing = True
+                        break
+
         if not existing:
+            new_payment = ChapterPayments()
             new_payment.received_from = payment['received_from']
             new_payment.received_date = payment['received_date']
             new_payment.received_amount = payment['received_amount']

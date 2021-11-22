@@ -9,6 +9,9 @@ class Person(db.Model):
     dob = db.Column(db.String(10))
     gender = db.Column(db.String(10))
 
+    def __str__(self):
+        return f"{self.FirstName} {self.MiddleName} {self.LastName}"
+
 
 class NgiPerson(db.Model):
     id = db.Column(db.BigInteger, primary_key=True)
@@ -21,3 +24,6 @@ class NgiPerson(db.Model):
     chapter = db.Column(db.String(50))
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=True)
     person = db.relationship('Person', backref=db.backref('NgiPerson', lazy=True))
+
+    def __str__(self):
+        return f"{self.person.FirstName} {self.person.MiddleName} {self.person.LastName}"

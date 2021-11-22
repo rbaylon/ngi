@@ -42,7 +42,7 @@ def user(user_id):
         abort(401)
 
     form = UsersFormEdit()
-    user = Users.query.filter_by(id=user_id).first()
+    user = Users.query.get_or_404(user_id)
 
     if not current_user.admin:
         if current_user.username != user.username:

@@ -1,0 +1,49 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'newbase.html' %}
+{% block title %}NGI Chapter Payent{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<br>
+			{% if form.delete.data == 'N' %}
+			<h3>{{form.chapter.data.name }} Payment Form</h3>
+			{% else %}
+			<h3>{{form.chapter.data.name }} Delete Payment Form</h3>
+			{% endif %}
+			<br>
+			{% if form.edit.data == 'Y' or form.delete.data == 'Y' %}
+			<form method="POST" action="{{ url_for('editchapter_payment', payment_id=payment_id) }}">
+			{% else %}
+			<form method="POST" action="{{ url_for('addchapter_payment' , chapter_id=chapter_id) }}">
+			{% endif %}
+				<div class="form-group">
+					{{ form.hidden_tag() }}
+					{{ wtf.form_field(form.received_from) }}
+				</div>
+				<div class="form-group">
+					{{ wtf.form_field(form.received_date )}}
+				</div>
+				<div class="form-group">
+					{{ wtf.form_field(form.received_amount )}}
+				</div>
+				<div class="form-group">
+					{{ wtf.form_field(form.payment_type )}}
+				</div>
+				<div class="form-group">
+					{{ wtf.form_field(form.cpc )}}
+				</div>
+				<button type="submit" class="btn btn-primary">
+					{% if form.delete.data == 'N' %}
+						Save
+					{% else %}
+						Delete
+					{% endif %}
+				</button>
+			</form>
+		</div>
+		<div class="col-sm-4"></div>
+	</div>
+</div>
+{% endblock %}

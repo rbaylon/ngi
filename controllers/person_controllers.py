@@ -49,7 +49,9 @@ class NgiPersonController:
     def delete(self, person):
         existing_person = NgiPerson.query.filter_by(id=person['id']).first()
         if existing_person:
+            person = Person.query.filter_by(id=existing_person.person.id).first()
             db.session.delete(existing_person)
+            db.session.delete(person)
             db.session.commit()
             return True
 
