@@ -174,7 +174,8 @@ def chapter_payments(chapter_id):
         total_chapter_share += chapter_share
         total_cpc_share += cpc_share
         payments.append(data)
-        all_data = {'payments': payments, 'total_cpc': total_cpc_share, 'total_chapter': total_chapter_share}
+
+    all_data = {'payments': payments, 'total_cpc': total_cpc_share, 'total_chapter': total_chapter_share}
     return render_template('chapter_payments.html', chapter_payments=all_data, chapter_id=chapter_id)
 
 
