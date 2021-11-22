@@ -6,7 +6,7 @@ chapter_payments = [('monthly_dues', 'Monthly Dues'), ('registration_fee', 'Regi
 
 cpc_amounts = {
     'vol_id_fee': 100,
-    'registration_fee': 80,
+    'registration_fee': 50,
     'id_fee': 80,
     'chapter_monthly_dues': 0.10
 }

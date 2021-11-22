@@ -171,8 +171,12 @@ def chapter_payments(chapter_id):
 
         data['cpc_share'] = cpc_share
         data['chapter_share'] = chapter_share
-        total_chapter_share += chapter_share
-        total_cpc_share += cpc_share
+        if not p.cpc:
+            total_cpc_share += cpc_share
+
+        if p.payment_type != 'uniform_fee':
+            total_chapter_share += chapter_share
+
         payments.append(data)
 
     all_data = {'payments': payments, 'total_cpc': total_cpc_share, 'total_chapter': total_chapter_share}
