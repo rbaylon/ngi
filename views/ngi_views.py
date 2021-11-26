@@ -2,7 +2,7 @@ from baseapp import app
 from models import NgiPerson, Chapter, ChapterPayments
 from controllers import NgiPersonController, ChapterController, ChapterPaymentsController
 from forms import NgiForm, ChapterForm, ChapterSelectForm, ChapterPaymentForm
-from flask_login import login_required
+from flask_login import login_required, current_user
 from flask import render_template, request, redirect, url_for, abort
 from datetime import datetime
 from Utils.variables import cpc_amounts
@@ -18,6 +18,9 @@ def members(page_num):
 @app.route("/member/add", methods=["GET", "POST"])
 @login_required
 def addmember():
+    if current_user.group == 'viewer':
+        abort(401)
+
     form = NgiForm()
     if form.validate_on_submit():
         controller = NgiPersonController()
@@ -39,6 +42,9 @@ def addmember():
 @app.route("/member/<int:person_id>", methods=["GET", "POST"])
 @login_required
 def editmember(person_id):
+    if current_user.group == 'viewer':
+        abort(401)
+
     form = NgiForm()
     person = NgiPerson.query.get_or_404(person_id)
     if form.validate_on_submit():
@@ -98,6 +104,9 @@ def chapters(page_num):
 @app.route("/chapter/add", methods=["GET", "POST"])
 @login_required
 def addchapter():
+    if current_user.group == 'viewer':
+        abort(401)
+
     form = ChapterForm()
     if form.validate_on_submit():
         controller = ChapterController()
@@ -111,6 +120,9 @@ def addchapter():
 @app.route("/chapter/<int:chapter_id>", methods=["GET", "POST"])
 @login_required
 def editchapter(chapter_id):
+    if current_user.group == 'viewer':
+        abort(401)
+
     form = ChapterForm()
     chapter = Chapter.query.get_or_404(chapter_id)
     if form.validate_on_submit():
@@ -201,6 +213,9 @@ def chapters_select():
 @app.route("/chapter/accounting/add/<int:chapter_id>", methods=["GET", "POST"])
 @login_required
 def addchapter_payment(chapter_id):
+    if current_user.group == 'viewer':
+        abort(401)
+
     form = ChapterPaymentForm()
     chapter = Chapter.query.get_or_404(chapter_id)
     form.received_from.query_factory = NgiPerson.query.filter_by(chapter=chapter.name).all
@@ -220,6 +235,9 @@ def addchapter_payment(chapter_id):
 @app.route("/chapter/accounting/<int:payment_id>", methods=["GET", "POST"])
 @login_required
 def editchapter_payment(payment_id):
+    if current_user.group == 'viewer':
+        abort(401)
+
     form = ChapterPaymentForm()
     payment = ChapterPayments.query.get_or_404(payment_id)
     chapter = Chapter.query.filter_by(name=payment.chapter).first()

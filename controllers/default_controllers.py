@@ -7,7 +7,8 @@ class UsersController:
         hashed_password = generate_password_hash(user['password'], method='pbkdf2:sha256:260000', salt_length=16)
         existing = Users.query.filter_by(username=user['username']).first()
         if not existing:
-            new_user = Users(username=user['username'], password=hashed_password,admin=False,email=user['email'])
+            new_user = Users(username=user['username'], password=hashed_password,admin=False, group=user['group'],
+                             email=user['email'])
             db.session.add(new_user)
             db.session.commit()
             return True
@@ -19,6 +20,7 @@ class UsersController:
         if existing_user:
             existing_user.username = user['username']
             existing_user.email = user['email']
+            existing_user.group = user['group']
             db.session.commit()
             return True
 

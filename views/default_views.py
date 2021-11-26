@@ -58,6 +58,7 @@ def user(user_id):
         else:
             user_data['username'] = form.username.data
             user_data['email'] = form.email.data
+            user_data['group'] = form.group.data
             user_data['id'] = user.id
             userc.edit(user_data)
             return redirect(url_for('users', page_num=1))
@@ -82,7 +83,8 @@ def adduser():
     form = UsersForm()
     if form.validate_on_submit():
         userc = UsersController()
-        user_data = {'username': form.username.data, 'email': form.email.data, 'password': form.password.data}
+        user_data = {'username': form.username.data, 'email': form.email.data, 'password': form.password.data,
+                     'group': form.group.data}
         userc.add(user_data)
         return redirect(url_for('users', page_num=1))
 
