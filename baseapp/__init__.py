@@ -1,4 +1,5 @@
-import uuid, os
+import uuid
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
@@ -11,7 +12,6 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 project_path = os.path.dirname(dir_path)
 app = Flask(__name__)
 app.config.from_pyfile('{}/config/config.cfg'.format(project_path))
-app.config["SECRET_KEY"] = uuid.uuid4()
 db = SQLAlchemy(app)
 Bootstrap(app)
 migrate = Migrate(app, db, compare_type=True)

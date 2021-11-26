@@ -124,6 +124,7 @@ def login():
                     return redirect(url_for('home'))
 
             msg = "Invalid username or password!"
+        msg = "Incorrect captcha code. Try again"
 
     return render_template('login.html', form=form, msg=msg, nexturl=nexturl)
 

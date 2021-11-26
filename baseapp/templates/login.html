@@ -34,7 +34,9 @@
                             {{ wtf.form_field(form.password) }}
                         </div>
                         <div class="form-group">
-                            {{ captcha() }}
+                            <label>Captcha Code</label><br>
+                            {{ captcha() }} <br>
+                            <label>Enter the code below</label><br>
                             <input type="text" name="captcha">
                         </div>
                         <div class="checkbox">
