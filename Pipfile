@@ -25,6 +25,8 @@ Flask-WTF-Ext = "*"
 WTForms-Components = "*"
 Werkzeug = "*"
 SQLAlchemy = "*"
+flask-session-captcha = "*"
+Flask-Sessionstore = "*"
 
 [dev-packages]
 

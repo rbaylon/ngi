@@ -1,4 +1,4 @@
-from baseapp import app
+from baseapp import app, captcha
 from werkzeug.security import check_password_hash
 from models import Users
 from controllers import UsersController
@@ -110,18 +110,20 @@ def login():
     remember = False
     nexturl = request.args.get('next', None)
     if form.validate_on_submit():
-        user = Users.query.filter_by(username=form.username.data).first()
-        if user:
-            if check_password_hash(user.password, form.password.data):
-                if form.remember.data:
-                    remember = True
+        if captcha.validate():
+            user = Users.query.filter_by(username=form.username.data).first()
+            if user:
+                if check_password_hash(user.password, form.password.data):
+                    if form.remember.data:
+                        remember = True
 
-                login_user(user, remember=remember)
-                if nexturl:
-                    return redirect(nexturl)
+                    login_user(user, remember=remember)
+                    if nexturl:
+                        return redirect(nexturl)
 
-                return redirect(url_for('home'))
-        msg = "Invalid username or password!"
+                    return redirect(url_for('home'))
+
+            msg = "Invalid username or password!"
 
     return render_template('login.html', form=form, msg=msg, nexturl=nexturl)
 

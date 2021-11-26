@@ -20,3 +20,5 @@ Werkzeug
 SQLAlchemy
 alembic
 python-dotenv
+flask-session-captcha
+Flask-Sessionstore
