@@ -10,3 +10,5 @@ cpc_amounts = {
     'id_fee': 80,
     'chapter_monthly_dues': 0.10
 }
+
+user_groups = [('treasurer','Treasurer'),('secretary','Secretary'),('viewer','Viewer'),('editor','Editor')]
